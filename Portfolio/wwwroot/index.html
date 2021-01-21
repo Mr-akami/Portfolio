@@ -45,6 +45,22 @@
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
 
+    <!--scrollIntoViewを行う処理-->
+    <!--https://qiita.com/kimuradesu/items/36aa7475de2d94c4216d-->>
+    <script>
+        window.scrollToElementId = (elementId) => {
+            console.info('scrolling to element', elementId);
+            var element = document.getElementById(elementId);
+            if (!element) {
+                console.warn('element was not found', elementId);
+                return false;
+            }
+            element.scrollIntoView();
+            return true;
+        }
+    </script>
+    <!--!-->>
+
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>

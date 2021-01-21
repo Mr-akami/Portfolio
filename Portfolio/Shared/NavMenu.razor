@@ -1,4 +1,6 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@inject IJSRuntime JSRuntime
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Portfolio</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -22,6 +24,13 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
         </li>
+        <li class="nav-item px-3">
+            <button class="btn btn-link" onclick="document.getElementById('link').scrollIntoView({behavior:'smooth'})">link</button>
+            <NavLink class="nav-link" @onclick="AnchorJumpTo">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> リンクに飛ぶ
+            </NavLink>
+        </li>
+
     </ul>
 </div>
 
@@ -33,5 +42,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void AnchorJumpTo()
+    {
+        JSRuntime.InvokeAsync<bool>("scrollToElementId", "link");
     }
 }
