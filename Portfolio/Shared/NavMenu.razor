@@ -11,30 +11,58 @@
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <span class="oi oi-home" aria-hidden="true"></span> TOP
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Profile))">
+                <span class="oi oi-plus" aria-hidden="true"></span> Profile
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Awards))">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Awards
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <button class="btn btn-link" onclick="document.getElementById('link').scrollIntoView({behavior:'smooth'})">link</button>
-            <NavLink class="nav-link" @onclick="AnchorJumpTo">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> リンクに飛ぶ
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Works))">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Works
             </NavLink>
         </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Favarits))">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Favarits
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Posts))">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Posts
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="@(s => AnchorJumpTo(Anchors.Roadmap))">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Roadmap
+            </NavLink>
+        </li>
+
+            <!--
+                <button class="btn btn-link" onclick="document.getElementById('link').scrollIntoView({behavior:'smooth'})">link</button>
+            -->
 
     </ul>
 </div>
 
 @code {
+    enum Anchors{
+        Profile,
+        Awards,
+        Products,
+        Works,
+        Favarits,
+        Posts,
+        Roadmap
+    };
+
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -44,8 +72,9 @@
         collapseNavMenu = !collapseNavMenu;
     }
 
-    private void AnchorJumpTo()
+    private void AnchorJumpTo(Anchors anchor)
     {
-        JSRuntime.InvokeAsync<bool>("scrollToElementId", "link");
+        string anchor_name = Enum.GetName(typeof(Anchors), anchor);
+        JSRuntime.InvokeAsync<bool>("scrollToElementId", anchor_name);
     }
 }
