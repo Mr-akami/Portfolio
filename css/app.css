@@ -1,7 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Noto Sans Japanese", '游ゴシック','ヒラギノ角ゴ ProN','Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f4f4ef;
 }
 
 a, .btn-link {
@@ -32,12 +33,29 @@ a, .btn-link {
 
 h3 {
     padding: 0.3em; /*文字周りの余白*/
-    color: #010101; /*文字色*/
-    background: #F1F1F2; /*背景色*/
-    font-size: 1.6em;
-    width: 120px;
-    height: 45px;
-    border-bottom: solid 3px #BCBCBA; /*下線*/
+    color: #20232a; /*文字色*/
+    background: #F1F1EC; /*背景色*/
+    font-size: 1.2em;
+    width: 100%;
+    height: 32px;
+    border-bottom: solid 3px #E7E7E3; /*下線*/
+}
+
+h4 {
+    color: #20232a;
+    font-size: 1.0rem;
+}
+.content-box{
+    padding-bottom: 2em;
+}
+
+.content-box-text{
+    padding-left:0.3em;
+
+}
+
+body {
+    color:#20232a;
 }
 
 
