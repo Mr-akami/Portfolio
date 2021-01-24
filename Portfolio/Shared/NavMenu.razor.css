@@ -21,6 +21,8 @@
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    background-color: #f4f4ef;
+
 }
 
     .nav-item:first-of-type {
@@ -32,7 +34,7 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: #20232a;
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -40,14 +42,16 @@
         line-height: 3rem;
     }
 
+/*
 .nav-item ::deep a.active {
     background-color: rgba(255,255,255,0.25);
-    color: white;
+    color: #455A64;
 }
+*/
 
 .nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: white;
+    color: #455A64;
 }
 
 @media (min-width: 641px) {
