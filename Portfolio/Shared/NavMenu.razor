@@ -45,15 +45,11 @@
             </NavLink>
         </li>
 
-            <!--
-                <button class="btn btn-link" onclick="document.getElementById('link').scrollIntoView({behavior:'smooth'})">link</button>
-            -->
-
     </ul>
 </div>
-
 @code {
-    enum Anchors{
+    enum Anchors
+    {
         Profile,
         Awards,
         Products,
@@ -78,3 +74,4 @@
         JSRuntime.InvokeAsync<bool>("scrollToElementId", anchor_name);
     }
 }
+
