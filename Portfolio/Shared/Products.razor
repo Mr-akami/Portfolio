@@ -1,0 +1,176 @@
+﻿<div class="row">
+    <div class="control-section col-lg-9 card-control-section tile_layout">
+        <div class="e-card-layout">
+            @if (this.CardDatas.Count == 0)
+            {
+                <div class="e-error">
+                    <div class="e-error-content">No results found. Please try a different search.</div>
+                </div>
+            }
+            else
+            {
+                @foreach (CardDataModel card in CardDatas)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;min-width: 400px;">
+                        <div id="card_sample_1" class="card_sample">
+                            <SfCard>
+                                <div class="my_hover" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl))">
+                                    <CardImage Image="@card.ImageUrl" />
+                                </div>
+                                <CardHeader Title="@card.Title" SubTitle="@card.SubTitle" />
+                                <CardContent Content="@card.Content" />
+                                @*
+                                    <CardFooter>
+                                        <CardFooterContent>
+                                           <SfButton CssClass="e-btn e-outline e-primary" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl))">Read More</SfButton>
+                                        </CardFooterContent>
+                                    </CardFooter>
+                                *@
+                            </SfCard>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .my_card {
+        width: calc((100% - 20px * 1) / 2);
+    }
+
+    .my_hover {
+        cursor: pointer;
+    }
+
+    .e-card-layout {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .property-panel-section .property-panel-content td {
+        padding: 0 0 15px 0;
+    }
+
+    .tile_layout.card-control-section .e-error {
+        height: 100px;
+        width: 100%;
+    }
+
+        .tile_layout.card-control-section .e-error .e-error-content {
+            color: red;
+            line-height: 100px;
+            text-align: center;
+        }
+
+    .tile_layout.card-control-section .e-card .e-card-image {
+        height: 250px;
+        width: inherit;
+    }
+
+    .tile_layout.card-control-section .e-card .e-card-header .e-card-header-caption .e-card-header-title {
+        font-size: 20px;
+        font-family: Helvetica, 'Segoe UI';
+        font-weight: bold;
+    }
+
+    .tile_layout.card-control-section .e-card .e-card-header .e-card-header-caption .e-card-sub-title {
+        padding-top: 5px;
+    }
+
+    .tile_layout.card-control-section .e-card .e-card-content {
+        padding-top: 0px;
+        height: 110px;
+    }
+
+    #source_link {
+        float: right;
+        margin-right: 10px;
+    }
+</style>
+@code{
+    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Inject] public IJSRuntime JsRuntime { get; set; }
+    public string SearchValue { get; set; }
+    public string SortingValue { get; set; }
+    public string[] FilteringValue { get; set; }
+    public class CardDataModel
+    {
+        public string ImageUrl { get; set; }
+        public string Title { get; set; }
+        public string SubTitle { get; set; }
+        public string Content { get; set; }
+        public string NavUrl { get; set; }
+        public string Tag { get; set; }
+        public CardDataModel() { }
+        public CardDataModel(string ImageUrl, string Title, string SubTitle, string Content, string NavUrl, string Tag)
+        {
+            this.ImageUrl = ImageUrl;
+            this.Title = Title;
+            this.SubTitle = SubTitle;
+            this.Content = Content;
+            this.NavUrl = NavUrl;
+            this.Tag = Tag;
+        }
+        public static List<CardDataModel> GetCardDatas()
+        {
+            List<CardDataModel> CardData = new List<CardDataModel>();
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/focus_gugen2017_final.png", Title = "Focus", SubTitle = "GUGEN2017 ファイナルステージ", Content = "Focusはスマートフォンと連携し、勉強中に効果を発揮する4種の香りを自動発散することで勉強をサポートするウェアラブルアロマディフューザーです。においを変化させることでユーザを自然と集中状態や休憩状態に誘導できます。", NavUrl = "https://youtu.be/BIP2PeFiT0U", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/magicwindow_yahoohackday_2017_techaward.png", Title = "Magic Window", SubTitle = "Yahoo! Hack Day 2017 Tech賞", Content = "パソコン画面内に両手が入るような没入感が味わえるVRコントローラー。没入感を阻害するような機器を身に着けことなく、よりVRに没入することができます。", NavUrl = "https://youtu.be/oJKTYEJkasU", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/osara_grdesign_3_mashup_2017_smarttableaward.png", Title = "Osara", SubTitle = "MASH UP AWARDS 2017 SmartTable賞 他", Content = "「Osara」は、色やパターンを変化させ、料理をよりおいしそうに見せるお皿です。スマホの操作で、色やパターンを簡単に設定できたり、写真から料理を分析して、おいしく見える色を推薦したりします。（GRデザインコンテスト イノベーション賞）", NavUrl = "https://youtu.be/s9cWNbLtLBo", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/thanksgnal_GRdesigne_2017_17.png", Title = "ThankSignal", SubTitle = "GRデザインコンテスト2016 17位", Content = "ThankSignalは、”ありがとう”を伝えるための車の新しい表示器です。音声認識やタッチで、アニメーションで後続車両や歩行者に”ありがとう”を伝えることができます。可愛いキャラクターの表示器が、ちょっと気持ちの良い交通社会を実現します", NavUrl = "https://youtu.be/LN_dFQlEoFg", Tag = "Client-side" });
+            return CardData;
+        }
+    }
+    public List<CardDataModel> CardDatas = CardDataModel.GetCardDatas();
+    public List<string> SortingType = new List<string>() { "Ascending", "Descending" };
+    public List<string> FilteringType = new List<string>() { "Client-side", "Server-side", "Front-end" };
+    public async Task NavigateToUrlAsync(string url)
+    {
+        await JsRuntime.InvokeAsync<object>("open", url, "_blank");
+    }
+    public List<CardDataModel> GetCardDatas(string[] values)
+    {
+        List<CardDataModel> cardDatas = CardDataModel.GetCardDatas();
+        if (values == null)
+        {
+            cardDatas = this.GetSortedCardDatas(cardDatas);
+            return cardDatas;
+        }
+        else
+        {
+            List<CardDataModel> filterCards = new List<CardDataModel>();
+            foreach (string value in values)
+            {
+                List<CardDataModel> cards = cardDatas.Where(e => e.Tag == value).ToList();
+                foreach (CardDataModel card in cards)
+                {
+                    filterCards.Add(card);
+                }
+            }
+            filterCards = this.GetSortedCardDatas(filterCards);
+            return filterCards;
+        }
+    }
+    public List<CardDataModel> GetSortedCardDatas(List<CardDataModel> sortingCards)
+    {
+        if (this.SortingValue != null)
+        {
+            sortingCards.Sort((x, y) => x.Title.CompareTo(y.Title));
+            if (this.SortingValue == "Descending")
+            {
+                sortingCards.Reverse();
+            }
+        }
+        return sortingCards;
+    }
+
+}
