@@ -16,10 +16,12 @@
             {
                 @foreach (CardDataModel card in CardDatas)
                 {
-                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;min-width: 500px;">
+                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;min-width: 400px;">
                         <div id="card_sample_1" class="card_sample">
                             <SfCard>
-                                <CardImage Image="@card.ImageUrl" />
+                                <div class="my_hover" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl))">
+                                    <CardImage Image="@card.ImageUrl" />
+                                </div>
                                 <CardHeader Title="@card.Title" SubTitle="@card.SubTitle" />
                                 <CardContent Content="@card.Content" />
                                 @*
@@ -46,6 +48,10 @@
 <style>
     .my_card {
         width: calc((100% - 20px * 1) / 2);
+    }
+
+    .my_hover{
+        cursor: pointer;
     }
 
     .e-card-layout {
@@ -122,18 +128,14 @@
         public static List<CardDataModel> GetCardDatas()
         {
             List<CardDataModel> CardData = new List<CardDataModel>();
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-one.png", Title = "ASP.NET MVC", SubTitle = "Nick Harrison", Content = "ASP.NET Model View Controller design pattern to keep the data, views, and logic clearly separated in apps.", NavUrl = "https://www.syncfusion.com/ebooks/ASPNET_MVC_Succinctly", Tag = "Server-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-two.png", Title = "Node.js", SubTitle = "Emanuele DelBono", Content = "Node.js is a wildly popular platform for writing web applications that has revolutionized web development in many ways.", NavUrl = "https://www.syncfusion.com/ebooks/nodejs", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-three.png", Title = "React.js", SubTitle = "Dmitri Nesteruk", Content = "React is a JavaScript library that has revolutionized how developers design and think about views in web applications.", NavUrl = "https://www.syncfusion.com/ebooks/reactjs_succinctly", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-four.png", Title = "TypeScript", SubTitle = "Steve Fenton", Content = "Microsoft TypeScript extends many familiar features of .NET programming to JavaScript.", NavUrl = "https://www.syncfusion.com/ebooks/typescript", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-five.png", Title = "PHP", SubTitle = "Jose Roberto Olivas Mendoza", Content = "Known for its straightforward simplicity, PHP is an open source, general-purpose scripting language oriented for web development.", NavUrl = "https://www.syncfusion.com/ebooks/php_succinctly", Tag = "Server-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-six.png", Title = "CSS3", SubTitle = "Peter Shaw", Content = "In CSS3 Succinctly, author Peter Shaw provides an overview of the latest features available for custom cascading style sheets.", NavUrl = "https://www.syncfusion.com/ebooks/css3", Tag = "Front-end" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-seven.png", Title = "ASP.NET Core", SubTitle = "Simone Chiaretta and Ugo Lattanzi", Content = "In ASP.NET Core Succinctly, seasoned authors Simone Chiaretta and Ugo Lattanzi update you on all the advances provided by Microsoft’s landmark framework.", NavUrl = "https://www.syncfusion.com/ebooks/asp_net_core_succinctly", Tag = "Server-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-eight.png", Title = "Aurelia", SubTitle = "Matthew Duffield", Content = "Aurelia is a relatively new, open-source JavaScript library/framework that simplifies the creation of web-based applications.", NavUrl = "https://www.syncfusion.com/ebooks/aurelia_succinctly", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-nine.png", Title = "ECMAScript 6", SubTitle = "Matthew Duffield", Content = "ECMAScript 6 (ES6), also known as ECMAScript 2015, brings new functionality and features to the table that developers have been wanting for a long time.", NavUrl = "https://www.syncfusion.com/ebooks/ecmascript_6_succinctly", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-ten.png", Title = "JavaScript", SubTitle = "Cody Lindley", Content = "JavaScript Succinctly was written to give readers an accurate, concise examination of JavaScript objects and their supporting nuances.", NavUrl = "https://www.syncfusion.com/ebooks/javascript", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-eleven.png", Title = "Knockout.js", SubTitle = "Ryan Hodson", Content = "Knockout.js Succinctly is intended for professional web developers who need to build dynamic, scalable user interfaces with minimal code.", NavUrl = "https://www.syncfusion.com/ebooks/knockoutjs", Tag = "Client-side" });
-            CardData.Add(new CardDataModel { ImageUrl = "images/cards/tile-twelve.png", Title = "Angular 2", SubTitle = "Joseph D.Booth", Content = "Angular 2 is a massively popular JavaScript framework built to take advantage of component development in web apps.", NavUrl = "https://www.syncfusion.com/ebooks/angular2_succinctly", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/focus_gugen2017_final.png", Title = "Focus", SubTitle = "GUGEN2017 ファイナルステージ", Content = "Focusはスマートフォンと連携し、勉強中に効果を発揮する4種の香りを自動発散することで勉強をサポートするウェアラブルアロマディフューザーです。においを変化させることでユーザを自然と集中状態や休憩状態に誘導できます。", NavUrl = "https://youtu.be/BIP2PeFiT0U", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/magicwindow_yahoohackday_2017_techaward.png", Title = "Magic Window", SubTitle = "Yahoo! Hack Day 2017 Tech賞", Content = "パソコン画面内に両手が入るような没入感が味わえるVRコントローラー。没入感を阻害するような機器を身に着けことなく、よりVRに没入することができます。", NavUrl = "https://youtu.be/oJKTYEJkasU", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "osara_grdesign_3_mashup_2017_smarttableaward.png", Title = "Osara", SubTitle = "MASH UP AWARDS 2017 SmartTable賞, GRデザインコンテスト2016 イノベーション賞", Content = "「Osara」は、色やパターンを変化させ、料理をよりおいしそうに見せるお皿です。スマホの操作で、色やパターンを簡単に設定できたり、写真から料理を分析して、おいしく見える色を推薦したりします。 様々な色に変化するOsaraをならべて、食卓に彩りを添えましょう。", NavUrl = "https://youtu.be/s9cWNbLtLBo", Tag = "Client-side" });
+
+            CardData.Add(new CardDataModel { ImageUrl = "products/thanksgnal_GRdesigne_2017_17.png", Title = "ThankSignal", SubTitle = "GRデザインコンテスト2016 17位", Content = "ThankSignalは、”ありがとう”を伝えるための車の新しい表示器です。スマホを用いた音声認識、または画面のタップにより、車の後方に取り付けたLCDにアニメーションを表示させることで、後続車両や歩行者に”ありがとう”を伝えることができます。可愛いキャラクターの表示器が、ちょっと気持ちの良い交通社会を実現します", NavUrl = "https://youtu.be/LN_dFQlEoFg", Tag = "Client-side" });
             return CardData;
         }
     }
