@@ -11,7 +11,7 @@
             {
                 @foreach (CardDataModel card in CardDatas)
                 {
-                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;min-width: 400px;">
+                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;">
                         <div id="card_sample_1" class="card_sample">
                             <SfCard>
                                 <div class="my_hover" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl))">
@@ -37,6 +37,13 @@
 </div>
 
 <style>
+@@media (min-width: 610px) {
+    .col-lg-4.col-md-4.col-sm-6{
+        min-width:400px;
+    }
+    }
+
+}
     .my_card {
         width: calc((100% - 20px * 1) / 2);
     }
@@ -68,7 +75,7 @@
         }
 
     .tile_layout.card-control-section .e-card .e-card-image {
-        height: 250px;
+        height: 260px;
         width: inherit;
     }
 
